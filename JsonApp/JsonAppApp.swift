@@ -10,8 +10,11 @@ import SwiftUI
 @main
 struct JsonAppApp: App {
     var body: some Scene {
+        let authViewModel = AuthViewModel()
+        
         WindowGroup {
             ContentView()
+                .environmentObject(authViewModel)
         }
     }
 }
