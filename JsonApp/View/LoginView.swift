@@ -11,12 +11,12 @@ struct LoginView: View {
     
     @State private var email = ""
     @State private var password = ""
-    @EnvironmentObject private var authViewModel: AuthViewModel
+    @EnvironmentObject var authViewModel: AuthViewModel
     
     var body: some View {
         ZStack {
             Color.blue.edgesIgnoringSafeArea(.all)
-            VStack {
+            VStack(spacing: 40) {
                 VStack(alignment: .leading) {
                     Text("Email")
                         .foregroundStyle(.white)
@@ -36,11 +36,13 @@ struct LoginView: View {
                     authViewModel.login(email: email, password: password)
                 } label: {
                     Text("Login")
+                        .frame(maxWidth: .infinity)
                         .foregroundStyle(.white)
                         .bold()
+                        .padding(.all, 10)
                 }
-                .padding(.top, 40)
-
+                .background(.pink)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
             }
             .padding()
         }

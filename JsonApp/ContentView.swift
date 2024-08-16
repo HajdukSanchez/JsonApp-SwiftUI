@@ -8,14 +8,29 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject var authViewModel : AuthViewModel
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        Group {
+            if !authViewModel.error {
+                if authViewModel.authenticated {
+                    HomeView()
+                } else {
+                    LoginView()
+                }
+            } else {
+                VStack {
+                    Text("Authentication invalid")
+                    Button {
+                        authViewModel.authenticated = false
+                        authViewModel.error = false
+                    } label: {
+                        Text("Logout")
+                    }
+                }
+            }
         }
-        .padding()
     }
 }
 

@@ -9,6 +9,7 @@ import Foundation
 
 class AuthViewModel: ObservableObject {
     @Published var authenticated = false
+    @Published var error = false
     
     func login(email: String, password: String) {
         guard let url = URL(string: "https://reqres.in/api/login") else { return }
@@ -27,12 +28,14 @@ class AuthViewModel: ObservableObject {
                 if !newData.token.isEmpty {
                     DispatchQueue.main.async {
                         self.authenticated = true
+                        self.error = false
                     }
                 }
             } catch let error as NSError {
                 print("Error", error.localizedDescription)
                 DispatchQueue.main.async {
                     self.authenticated = false
+                    self.error = true
                 }
             }
         }.resume()
