@@ -15,7 +15,7 @@ struct ContentView: View {
         Group {
             if !authViewModel.error {
                 if authViewModel.authenticated {
-                    HomeView()
+                    HomeView(usersViewModel: UsersViewModel.shared)
                 } else {
                     LoginView()
                 }
