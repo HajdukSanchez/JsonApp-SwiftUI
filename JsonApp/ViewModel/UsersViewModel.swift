@@ -12,20 +12,22 @@ class UsersViewModel: ObservableObject {
     
     // MARK: - Statics
     static let shared: UsersViewModel = .init()
-    static let test: UsersViewModel = .init(isPreview: true)
+    static let test: UsersViewModel = {
+        let viewModel = UsersViewModel(isTest: true)
+        for i in 1...10 {
+            viewModel.users.append(User(
+                id: i,
+                name: "User \(i)",
+                email: "user\(i)@example.com"
+            ))
+        }
+        return viewModel
+    }()
 
     
-    init(isPreview: Bool = false) {
-        fetchUsers()
-        
-        if isPreview {
-            for i in 1...10 {
-                users.append(User(
-                    id: i,
-                    name: "User \(i)",
-                    email: "user\(i)@example.com"
-                ))
-            }
+    init(isTest: Bool = false) {
+        if !isTest {
+            fetchUsers()
         }
     }
     

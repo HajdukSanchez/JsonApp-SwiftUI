@@ -9,16 +9,16 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @StateObject var usersViewModel: UsersViewModel
-    @EnvironmentObject private var authViewModel: AuthViewModel
+    @StateObject var usersVM: UsersViewModel = UsersViewModel.shared
+    @EnvironmentObject private var authVM: AuthViewModel
     
     var body: some View {
         NavigationView {
             VStack {
-                if usersViewModel.users.isEmpty {
+                if usersVM.users.isEmpty {
                     ProgressView()
                 } else {
-                    List(usersViewModel.users, id: \.id) { item in
+                    List(usersVM.users, id: \.id) { item in
                         VStack(alignment: .leading) {
                             Text(item.name)
                                 .bold()
@@ -31,7 +31,7 @@ struct HomeView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
-                        authViewModel.logOut()
+                        authVM.logOut()
                     } label: {
                         Text("Exit")
                     }
@@ -49,5 +49,5 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(usersViewModel: UsersViewModel.test)
+    HomeView(usersVM: UsersViewModel.test)
 }
