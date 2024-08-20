@@ -33,7 +33,9 @@ struct LoginView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
                 Button {
-                    authViewModel.login(email: email, password: password)
+                    // Uncomment to make the API call
+                    // authViewModel.login(email: email, password: password)
+                    authViewModel.authenticated.toggle()
                 } label: {
                     Text("Login")
                         .frame(maxWidth: .infinity)
