@@ -38,9 +38,7 @@ struct HomeView: View {
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        // TODO: add action
-                    } label: {
+                    NavigationLink(destination: Users2HomeView()) {
                         Text("Next")
                     }
                 }
