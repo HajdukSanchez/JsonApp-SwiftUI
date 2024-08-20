@@ -23,6 +23,7 @@ struct HomeView: View {
                             Text(item.name)
                                 .bold()
                             Text(item.email)
+                            Text(item.address.street)
                         }
                     }
                 }

@@ -18,7 +18,9 @@ class UsersViewModel: ObservableObject {
             viewModel.users.append(User(
                 id: i,
                 name: "User \(i)",
-                email: "user\(i)@example.com"
+                email: "user\(i)@example.com",
+                address: Address(street: "Street \(i)",
+                                 geoLocation: GeoLocation(lat: "\(i * 2)", long: "\(i * 4)"))
             ))
         }
         return viewModel
