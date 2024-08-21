@@ -17,17 +17,19 @@ struct Users2HomeView: View {
             ProgressView()
         } else {
             List(user2VM.users.data, id: \.id) { item in
-                HStack {
-                    Image(systemName: "person")
-                        .imageFromUrl(url: URL(string: item.avatar)!)
-                        .frame(width: 60, height: 60)
-                        .clipped()
-                        .clipShape(Circle())
-                    VStack(alignment: .leading) {
-                        Text(item.first_name)
-                            .font(.title)
-                        Text(item.email)
-                            .font(.subheadline)
+                NavigationLink(destination: UserDetailView(userId: item.id)){
+                    HStack {
+                        Image(systemName: "person")
+                            .imageFromUrl(url: URL(string: item.avatar)!)
+                            .frame(width: 60, height: 60)
+                            .clipped()
+                            .clipShape(Circle())
+                        VStack(alignment: .leading) {
+                            Text(item.first_name)
+                                .font(.title)
+                            Text(item.email)
+                                .font(.subheadline)
+                        }
                     }
                 }
             }
